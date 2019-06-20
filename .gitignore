@@ -9,6 +9,9 @@ app/storage/
 
 # Laravel 5 & Lumen specific
 public/storage
+public/fontawesome-free-5.9.0-web
+public/js
+public/css
 public/hot
 storage/*.key
 .env.*.php
