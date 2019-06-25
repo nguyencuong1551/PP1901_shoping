@@ -14,7 +14,7 @@ class CreateManageController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(5);
 
         return view('CreateManage.index', compact('users'));
     }
@@ -87,7 +87,7 @@ class CreateManageController extends Controller
             $users->password = bcrypt($request->get('password'));
             $users->role='manage';
             if ($users->save()) {
-                $mess = "edit victory";
+                $mess = "success victory";
             }
         }
 
@@ -106,7 +106,7 @@ class CreateManageController extends Controller
         $users = User::find($request->id)->delete();
         $mess = "";
         if ($users) {
-            $mess = "edit victory";
+            $mess = "success victory";
         }
 
         return redirect()->route('indexManage')->with('mess', $mess);

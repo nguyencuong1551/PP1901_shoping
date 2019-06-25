@@ -6,6 +6,7 @@
             Khách hàng
         </div>
         <div class="col-md-2">
+
             <a href="{{Route('manage')}}">{{ __('trang nhân viên &raquo') }}</a>
         </div>
     </div>
