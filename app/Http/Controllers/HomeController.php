@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,5 +37,12 @@ class HomeController extends Controller
     {
 
         return view('manage');
+    }
+    public function welcome()
+    {
+        $events = Event::all();
+        $products = Product::Paginate(12);
+
+        return view('welcome',compact('events','products'));
     }
 }

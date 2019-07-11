@@ -117,7 +117,6 @@
             </nav>
             <!-- End of Topbar -->
             <!-- Begin Page Content -->
-            @yield('content')
         </div>
 
     </div>
