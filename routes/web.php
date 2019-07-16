@@ -11,7 +11,7 @@
 |
 */
 
-
+Route::get('/','ProductController@ProductAllWelcome')->name('welcome');
 
 Auth::routes();
 
