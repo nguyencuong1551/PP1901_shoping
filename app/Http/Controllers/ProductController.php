@@ -19,6 +19,9 @@ class ProductController extends Controller
                 'event' => function ($query) {
                     $query->select(['id', 'name']);
                 },
+                'images' => function ($query) {
+                    $query->select(['id_product', 'name']);
+                },
                 'category' => function ($query) {
                     $query->select(['id', 'name']);
                 }]
@@ -54,13 +57,9 @@ class ProductController extends Controller
             $query->select(['id_product', 'name']);
         }])->get()->toArray();
 
-        $images = new Image();
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = $image->getClientOriginalName();
-            $location = $image->move(public_path() . '/images/', $filename);
-
+        $image = $request->file;
+        if (count($image) != 0) {
             $product = new Product();
             $product->name = $request->get('name');
             $product->description = $request->get('description');
@@ -69,17 +68,22 @@ class ProductController extends Controller
 
             $product->id_event = $request->get('id_event');
 
-            $images->name = $filename;
             $mess = "";
             if ($product->save()) {
-                $images->id_product = $product->id;
-                $images->save();
+                foreach ($image as $k => $v) {
+                    $images = new Image();
+
+                    $filename = $v->getClientOriginalName();
+                    $location = $v->move(public_path() . '/images/', $filename);
+
+                    $images->name = $filename;
+                    $images->id_product = $product->id;
+                    $images->save();
+                }
                 $mess = "{{ __('Success add new') }}";
             }
             return view('products.add', compact('categories', 'events'))->with('mess', $mess);
-
         }
-
     }
 
     public function edit($id)
@@ -98,7 +102,7 @@ class ProductController extends Controller
 
         $mess = "";
 
-        $images = Image::where('id_product',$id)->first();
+        $images = Image::where('id_product', $id)->first();
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -129,6 +133,23 @@ class ProductController extends Controller
         $product = Product::find($request->get('product_id'));
         $product->delete();
         return redirect()->route('indexProduct')->with('mes_del', "{{ __('Delete success') }}");
+    }
+
+
+    public function ProductAllWelcome()
+    {
+        $products = Product::with
+        (
+            [
+                'event' => function ($query) {
+                    $query->select(['id', 'name']);
+                },
+                'category' => function ($query) {
+                    $query->select(['id', 'name']);
+                }
+            ]
+        )->get()->toArray();
+        return view('welcome', compact('products'));
     }
 }
 

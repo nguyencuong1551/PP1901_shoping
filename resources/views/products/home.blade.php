@@ -36,12 +36,15 @@
                             <th scope="col">{{ __('Unit price')}}</th>
                             <th scope="col">{{ __('Event')}}</th>
                             <th scope="col">{{ __('Category')}}</th>
+                            <th scope="col">{{ __('Image')}}</th>
                             <th scope="col">{{ __('ADD') }}</th>
                             <th scope="col">{{ __('EDIT') }}</th>
+                            <th scope="col">{{ __('DELETE') }}</th>
 
                         </tr>
                         </thead>
                         <tbody>
+
                         @foreach($products as $product)
                             <tr>
                                 <th scope="row">{!! $product['id'] !!}</th>
@@ -50,6 +53,16 @@
                                 <td>{!! $product['unit_price'] !!}</td>
                                 <td>{!! $product['event']['name'] !!}</td>
                                 <td>{!! $product['category']['name'] !!}</td>
+                                <td>
+                                    @if(count($product['images']) == 0)
+                                        no image
+                                    @else
+                                        <?php $image=($product['images']);?>
+                                        @foreach ($image as $images)
+                                            <img class="img-rounded corners" style="width: 300px; height:100px" src="{{ asset('images/'.((count($product['images'])!=0) ? ($images['name']): 'K co anh')) }}" alt="">
+                                        @endforeach
+                                    @endif
+                                </td>
                                 <td>
                                     <a class="btn btn-success" href="{{Route('addProduct')}}"><i class="fas fa-plus"></i></a>
                                 </td>

@@ -185,7 +185,5 @@
     <!-- footer-bottom -->
 </footer>
 <!-- / footer -->
-
-
 </body>
 @endsection
