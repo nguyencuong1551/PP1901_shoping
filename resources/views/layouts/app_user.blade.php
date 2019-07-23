@@ -7,6 +7,32 @@
     <title>Daily Shop | Home</title>
 
     <!-- Font awesome -->
+    <!-- Font awesome -->
+
+    <!-- Bootstrap -->
+
+    <!-- SmartMenus jQuery Bootstrap Addon CSS -->
+
+    <!-- Product view slider -->
+
+    <!-- slick slider -->
+
+
+    <!-- Top Slider CSS -->
+
+    <!-- Main style sheet -->
+
+    <!-- Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+
+    <![endif]-->
+    <link href=" {{ asset('css/font-awesome.css') }} " rel="stylesheet">
     <link href="{{ asset('fontawesome-free-5.9.0-web/css/all.min.css') }}" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
@@ -226,6 +252,8 @@
 <script type="text/javascript" src="{{ asset('js/nouislider.js') }}"></script>
 <!-- Custom js -->
 <script src="{{ asset('js/custom.js  ') }}"></script>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </body>
 <!-- / header section -->
 <!-- menu -->
