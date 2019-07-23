@@ -49,6 +49,7 @@
                             <div class="aa-product-inner">
                                 <!-- start prduct navigation -->
                                 <ul class="nav nav-tabs aa-products-tab">
+
                                 <!-- category -->
                                 </ul>
                                 <!-- Tab panes -->
@@ -188,5 +189,4 @@
     <!-- / footer -->
     </body>
 @endsection
-
 

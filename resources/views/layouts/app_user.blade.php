@@ -61,7 +61,8 @@
                                 <div class="dropdown">
                                     <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1"
                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <img src="http://template.brillianthotel.vn/content/dam/icons/vn_ic.png" alt="english flag">VN
+                                        <img src="http://template.brillianthotel.vn/content/dam/icons/vn_ic.png"
+                                             alt="english flag">VN
                                     </a>
                                 </div>
                             </div>
@@ -85,7 +86,8 @@
                                 @else
 
                                     <li class="nav-item dropdown">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }} <span class="caret"></span>
                                         </a>
 
@@ -96,7 +98,8 @@
                                                 {{ __('Logout') }}
                                             </a>
 
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                  style="display: none;">
                                                 {{ csrf_field() }}
                                             </form>
                                         </div>
@@ -122,7 +125,8 @@
                             <!-- Text based logo -->
                             <a href="{{asset('/')}}">
                                 <span class="fa fa-shopping-cart"></span>
-                                <p>{{ __('daily') }}<strong>{{ __('Shop') }}</strong> <span>{{ __('Your Shopping Partner') }}</span></p>
+                                <p>{{ __('daily') }}<strong>{{ __('Shop') }}</strong>
+                                    <span>{{ __('Your Shopping Partner') }}</span></p>
                             </a>
                             <!-- img based logo -->
                             <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
@@ -155,7 +159,8 @@
                       </span>
                                     </li>
                                 </ul>
-                                <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">{{ __('Checkout') }}</a>
+                                <a class="aa-cartbox-checkout aa-primary-btn"
+                                   href="checkout.html">{{ __('Checkout') }}</a>
                             </div>
                         </div>
                         <!-- / cart box -->
@@ -178,7 +183,8 @@
                 <!-- Navbar -->
                 <div class="navbar navbar-default" role="navigation">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -189,13 +195,48 @@
                         <!-- Left nav -->
                         <ul class="nav navbar-nav">
                             <li><a href="{{Route('welcome')}}">Home</a></li>
-                            <li><a href="#">Men <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    @foreach($categories as $category)
-                                    <li><a href="#">{{ $category->name }}</a></li>
+                            @foreach($category1 as $x)
+                                <li><a href="#">{{$x->name}}<span class="caret"></span></a>
+                                    @endforeach
+                                    <ul class="dropdown-menu">
+                                        @foreach($parent1 as $y)
+                                            <li><a href="{{Route('categorydetail',$y->id)}}">{{$y->name}}</a>
                                         @endforeach
-                                </ul>
-                            </li>
+                                    </ul>
+                                @foreach($category2 as $x)
+                                    <li><a href="#">{{$x->name}}<span class="caret"></span></a>
+                                        @endforeach
+                                        <ul class="dropdown-menu">
+                                            @foreach($parent2 as $y)
+                                                <li><a href="{{Route('categorydetail',$y->id)}}">{{$y->name}}</a>
+                                            @endforeach
+                                        </ul>
+                                    @foreach($category3 as $x)
+                                        <li><a href="#">{{$x->name}}<span class="caret"></span></a>
+                                            @endforeach
+                                            <ul class="dropdown-menu">
+                                                @foreach($parent3 as $y)
+                                                    <li><a href="{{Route('categorydetail',$y->id)}}">{{$y->name}}</a>
+                                                @endforeach
+                                            </ul>
+                                        @foreach($category4 as $x)
+                                            <li><a href="#">{{$x->name}}<span class="caret"></span></a>
+                                                @endforeach
+                                                <ul class="dropdown-menu">
+                                                    @foreach($parent4 as $y)
+                                                        <li>
+                                                            <a href="{{Route('categorydetail',$y->id)}}">{{$y->name}}</a>
+                                                    @endforeach
+                                                </ul>
+                                            @foreach($category5 as $x)
+                                                <li><a href="#">{{$x->name}}<span class="caret"></span></a>
+                                                    @endforeach
+                                                    <ul class="dropdown-menu">
+                                                        @foreach($parent5 as $y)
+                                                            <li>
+                                                                <a href="{{Route('categorydetail',$y->id)}}">{{$y->name}}</a>
+                                                        @endforeach
+                                                    </ul>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -229,3 +270,4 @@
 </body>
 <!-- / header section -->
 <!-- menu -->
+

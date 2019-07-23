@@ -17,7 +17,6 @@ Route::get('/', 'ProductController@ProductAllWelcome')->name('welcome');
 
 Auth::routes();
 
-
 Route::middleware('checkmanage')->group(function () {
     Route::prefix('product')->group(function () {
         Route::get('/', 'ProductController@index')->name('indexProduct');
@@ -99,4 +98,7 @@ Route::prefix('ShoppingCart')->group(function () {
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('checkadmin');
 Route::get('/manage', 'HomeController@manage')->name('manage')->middleware('checkmanage');
-Route::get('/','HomeController@welcome')->name('welcome');
+Route::get('/', 'HomeController@welcome')->name('welcome');
+Route::get('/category/{id}', 'HomeController@categoryDetail')->name('categorydetail');
+
+

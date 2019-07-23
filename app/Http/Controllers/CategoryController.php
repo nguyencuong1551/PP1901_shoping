@@ -10,47 +10,49 @@ class CategoryController extends Controller
     //
     public function index()
     {
-        $categories=Category::all();
+        $categories = Category::all();
         return view('categories.home', compact('categories'));
     }
 
     public function create()
     {
+        $categories = Category::all()->where('id_parent', '=', 0);
         return view('categories.add', compact('categories'));
     }
 
     public function store(Request $request)
     {
+        $categories = Category::all()->where('id_parent', '=', 0);
         $category = new Category();
         $category->name = $request->get('name');
-        $category->link = $request->get('link');
         $category->id_parent = $request->get('id_parent');
         $mess = "";
         if ($category->save()) {
             $mess = "Success add new";
         }
 
-        return view('categories.add', compact('category'))->with('mess', $mess);
+        return view('categories.add', compact('category', 'categories'))->with('mess', $mess);
     }
 
     public function edit($id)
     {
+        $categories = Category::all()->where('id_parent', '=', 0);
         $category = Category::find($id);
-        return view('categories.edit', compact('category'));
+        return view('categories.edit', compact('category', 'categories'));
     }
 
     public function update(Request $request, $id)
     {
+        $categories = Category::all()->where('id_parent', '=', 0);
         $category = Category::find($id);
         $category->name = $request->get('name');
-        $category->link = $request->get('link');
         $category->id_parent = $request->get('id_parent');
         $mess = "";
         if ($category->save()) {
             $mess = "Success edit";
         }
 
-        return view('categories.edit', compact('category'))->with('mess', $mess);
+        return view('categories.edit', compact('category', 'categories'))->with('mess', $mess);
     }
 
     public function delete(Request $request)
@@ -60,5 +62,9 @@ class CategoryController extends Controller
         return redirect()->route('indexCategory')->with('mes_del', 'Delete success');
     }
 
+    public function categoriesDetail()
+    {
 
+    }
 }
+
