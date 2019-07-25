@@ -17,10 +17,11 @@ Route::get('/', 'ProductController@ProductAllWelcome')->name('welcome');
 
 Auth::routes();
 
-
 Route::middleware('checkmanage')->group(function () {
     Route::prefix('product')->group(function () {
         Route::get('/', 'ProductController@index')->name('indexProduct');
+        Route::get('/detail/{id}', 'ProductController@DetailProduct')->name('detail');
+
 
         Route::get('/add', 'ProductController@create')->name('addProduct');
         Route::post('/add', 'ProductController@store')->name('storeProduct');
@@ -106,7 +107,12 @@ Route::prefix('ShoppingCart')->group(function () {
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('checkadmin');
 Route::get('/manage', 'HomeController@manage')->name('manage')->middleware('checkmanage');
+
+Route::get('/category/{id}', 'HomeController@categoryDetail')->name('categorydetail');
 Route::get('/','HomeController@welcome')->name('welcome');
+Route::get('/product/{id}', 'ProductController@DetailProduct')->name('detail');
+Route::post('/add/{id}', 'CommentController@store')->name('addcomment');
+Route::get('/event/{id}', 'EventController@detail')->name('eventdetail');
 
 Route::get('/search','HomeController@getSearch')->name('search');
 Route::get('add-to-cart/{id}', 'CreateShopingCartController@getAddtoCart')->name('themgiohang');

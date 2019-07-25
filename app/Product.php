@@ -32,7 +32,7 @@ class Product extends Model
     public function event()
     {
 
-        return $this->belongsTo('App\Event', 'id_event', 'id');
+        return $this->belongsTo('App\ImageEvent', 'id_event', 'id');
     }
 
     public function comments()

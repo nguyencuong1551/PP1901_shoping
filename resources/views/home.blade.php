@@ -35,7 +35,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">{{ __('Danh Mục') }}
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ count($products) }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ count($categories) }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-fw fa-table fa-2x text-gray-300"></i>
