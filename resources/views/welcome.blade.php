@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('layouts.app_user')
 @section('content')
     <body>
     <section id="aa-slider">
@@ -140,6 +139,7 @@
                 </div>
             </div>
         </div>
+
     </section>
     <!-- / Products section -->
     <!-- banner section -->
@@ -227,6 +227,65 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
+    </div>
+</section>
+<!-- / Support section -->
+<!-- Testimonial -->
+<!-- / Testimonial -->
+
+<!-- Latest Blog -->
+<!-- / Latest Blog -->
+
+<!-- Client Brand -->
+<!-- footer -->
+<footer id="aa-footer">
+    <!-- footer bottom -->
+    <div class="aa-footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="aa-footer-top-area">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-6">
+                                <div class="aa-footer-widget">
+                                    <h3>{{ __('ADDRESS') }}</h3>
+                                    <ul class="aa-footer-nav">
+                                        <li><a href="#">
+                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59587.94583116869!2d105.80194401492152!3d21.02281613561084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9bd9861ca1%3A0xe7887f7b72ca17a9!2zSMOgIE7hu5lpLCBIb8OgbiBLaeG6v20sIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1562160360630!5m2!1svi!2s"
+                                                        width="800" height="250" frameborder="0" style="border:0"
+                                                        allowfullscreen></iframe>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="aa-footer-widget">
+                                    <div class="aa-footer-widget">
+                                        <h3>{{ __('Contact Us') }}</h3>
+                                        <address>
+                                            <p><span class="fa fa-phone"></span>+1 212-982-4589</p>
+                                            <p><span class="fa fa-envelope"></span>dailyshop@gmail.com</p>
+                                        </address>
+                                        <div class="aa-footer-social">
+                                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                                            <a href=""><i class="fab fa-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer-bottom -->
+</footer>
+<!-- / footer -->
+</body>
+@endsection
+=======
         <!-- footer-bottom -->
     </footer>
     <!-- / footer -->
@@ -234,3 +293,4 @@
 @endsection
 
 
+>>>>>>> cf7d588bcba7ab6a59c59ba525fbb8b2cf1a963f

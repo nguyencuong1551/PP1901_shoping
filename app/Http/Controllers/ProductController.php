@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use App\ImageEvent;
 use App\Image;
-use DemeterChain\C;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
@@ -14,6 +12,7 @@ class ProductController extends Controller
 {
     public function index()
     {
+
         $products = Product::with
         (
             [
@@ -37,12 +36,12 @@ class ProductController extends Controller
     public function __construct()
     {
         $this->categories = Category::all();
-        $this->events = ImageEvent::all();
+        $this->events = Event::all();
     }
 
     public function create()
     {
-        $categories = Category::all()->where('id_parent','!=','0');
+        $categories = $this->categories;
         $events = $this->events;
 
         return view('products.add', compact('categories', 'events'));
@@ -51,7 +50,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $categories = Category::all()->where('id_parent','!=','0');
+        $categories = $this->categories;
         $events = $this->events;
 
         $imageis = Product::with(['images' => function ($query) {
@@ -83,14 +82,13 @@ class ProductController extends Controller
                 }
                 $mess = "{{ __('Success add new') }}";
             }
-            //return redirect()->back();
             return view('products.add', compact('categories', 'events'))->with('mess', $mess);
         }
     }
 
     public function edit($id)
     {
-        $categories = Category::all()->where('id_parent','!=','0');
+        $categories = $this->categories;
         $events = $this->events;
         $product = Product::find($id);
 
@@ -99,7 +97,7 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $categories = Category::all()->where('id_parent','!=','0');
+        $categories = $this->categories;
         $events = $this->events;
 
         $mess = "";
@@ -131,8 +129,7 @@ class ProductController extends Controller
                     $mess = "{{ __('Success edit') }}";
                 }
 
-                return redirect()->back();
-//                return view('products.edit', compact('categories', 'product', 'events'))->with('mess', $mess);
+                return view('products.edit', compact('categories', 'product', 'events'))->with('mess', $mess);
             }
         }
     }
@@ -179,33 +176,16 @@ class ProductController extends Controller
         $products_category = Product::with
         (
             [
-                'event' => function ($query) {
-                    $query->select(['id', 'name']);
-                },
                 'category' => function ($query){
                     $query->select(['id','name']);
                 }
             ]
         )->where('id','=', $id)->get()->toArray();
-        $products_sale = Product::with
-        (
-            [
-                'event' => function ($query) {
-                    $query->select(['id', 'promotion_price']);
-                },
-            ]
-        )->where('id_event' ,'=', $id)->get()->toArray();
+        $product_category=$products->category->get();
+        $aa=Category::find($product_category[0]['id'])->products->toArray();
         $comments=Product::find($id)->comments;
-        $categories_detail = Category::find($id);
-        $events = ImageEvent::find($id);
 
-        return view('products.detail',compact('categories','products','products_sale','events','categories_detail','product_image','products_category','comments'));
-    }
-
-    public function getSearch(Request $request)
-    {
-        $products = Product::where('name','like','%'.$request->key.'%')->get();
-
-        return view('products.search',compact('products'));
+        return view('products.detail',compact('categories','products','product_image','products_category','aa','comments'));
     }
 }
+
