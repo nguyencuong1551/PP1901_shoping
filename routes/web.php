@@ -11,14 +11,17 @@
 |
 */
 
-Route::get('/','ProductController@ProductAllWelcome')->name('welcome');
+
+Route::get('/', 'ProductController@ProductAllWelcome')->name('welcome');
+
 
 Auth::routes();
-
 
 Route::middleware('checkmanage')->group(function () {
     Route::prefix('product')->group(function () {
         Route::get('/', 'ProductController@index')->name('indexProduct');
+        Route::get('/detail/{id}', 'ProductController@DetailProduct')->name('detail');
+
 
         Route::get('/add', 'ProductController@create')->name('addProduct');
         Route::post('/add', 'ProductController@store')->name('storeProduct');
@@ -27,6 +30,8 @@ Route::middleware('checkmanage')->group(function () {
         Route::post('/edit/{id}', 'ProductController@update')->name('updateProduct');
 
         Route::post('/delete', 'ProductController@delete')->name('deleteProduct');
+
+        Route::get('/search','ProductController@getSearch')->name('searchProduct');
     });
 
     Route::prefix('event')->group(function () {
@@ -55,6 +60,21 @@ Route::middleware('checkmanage')->group(function () {
 
     });
 
+    Route::prefix('category')->group(function () {
+        Route::get('/', 'CategoryController@index')->name('indexCategory');
+
+        Route::get('/add', 'CategoryController@create')->name('addCategory');
+        Route::post('/add', 'CategoryController@store')->name('storeCategory');
+
+        Route::get('/edit/{id}', 'CategoryController@edit')->name('editCategory');
+        Route::post('/edit/{id}', 'CategoryController@update')->name('updateCategory');
+
+        Route::post('/delete', 'CategoryController@delete')->name('deleteCategory');
+
+        Route::get('/search','CategoryController@getSearch')->name('searchCategory');
+
+    });
+
     Route::prefix('comment')->group(function () {
         Route::get('/', 'CommentController@index')->name('indexComment');
 
@@ -63,6 +83,9 @@ Route::middleware('checkmanage')->group(function () {
 
     Route::prefix('category')->group(function () {
         Route::get('/', 'CategoryController@index')->name('indexCategory');
+
+        Route::get('/add', 'CategoryController@addCategory')->name('addCategory');
+        Route::post('/add', 'CategoryController@storeCategory')->name('storeCategory');
     });
 
     Route::get('/indexManage', 'CreateManageController@index')->name('indexManage');
@@ -84,5 +107,17 @@ Route::prefix('ShoppingCart')->group(function () {
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('checkadmin');
 Route::get('/manage', 'HomeController@manage')->name('manage')->middleware('checkmanage');
-Route::get('//', 'HomeController@welcome')->name('welcome');
+
+Route::get('/category/{id}', 'HomeController@categoryDetail')->name('categorydetail');
+Route::get('/','HomeController@welcome')->name('welcome');
+Route::get('/product/{id}', 'ProductController@DetailProduct')->name('detail');
+Route::post('/add/{id}', 'CommentController@store')->name('addcomment');
+Route::get('/event/{id}', 'EventController@detail')->name('eventdetail');
+
+Route::get('/search','HomeController@getSearch')->name('search');
+Route::get('add-to-cart/{id}', 'CreateShopingCartController@getAddtoCart')->name('themgiohang');
+Route::get('del-cart/{id}', 'CreateShopingCartController@getDelItemCart')->name('xoagiohang');
+
+Route::get('getOrder','CreateShopingCartController@getCheckout')->name('getOrder');
+Route::post('postOrder','CreateShopingCartController@postCheckout')->name('postOrder');
 

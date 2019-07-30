@@ -1,4 +1,5 @@
 @extends('layouts.app_admin')
+@section('title','Search product')
 @section('content')
     <body>
     <div class="container-fluid">
@@ -55,16 +56,13 @@
                                 <td>{!! $product['category']['name'] !!}</td>
                                 <td>
                                     @if(count($product['images']) == 0)
-                                        {{ __('no image') }}
+                                        no image
                                     @else
                                         <?php $image=($product['images']);?>
                                         @foreach ($image as $images)
                                             <img class="img-rounded corners" style="width: 300px; height:100px" src="{{ asset('images/'.((count($product['images'])!=0) ? ($images['name']): 'K co anh')) }}" alt="">
                                         @endforeach
                                     @endif
-                                </td>
-                                <td>
-                                    <a class="btn btn-success" href="{{Route('addProduct')}}"><i class="fas fa-plus"></i></a>
                                 </td>
                                 <td>
                                     <a class="btn btn-info"
@@ -74,7 +72,7 @@
                                     <form action="{!! Route('deleteProduct') !!}" method="post">
                                         <input type="hidden" name="product_id" value="{!! $product['id'] !!}">
                                         <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                        <input type="submit" value="Delete" class="btn btn-danger">
+                                        <input type="submit" value="X" class="btn btn-danger">
                                     </form>
                                 </td>
                             </tr>
@@ -88,4 +86,3 @@
     </div>
     </body>
 @endsection
-
