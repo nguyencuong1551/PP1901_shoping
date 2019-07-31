@@ -13,7 +13,7 @@ class BillsTaleSeeder extends Seeder
      */
     public function run()
     {
-        for($i=0; $i<10; $i++)
+        for($i=0; $i<5; $i++)
         {
             DB::table('bills')->insert([
                 'payment' => Str::random(10),

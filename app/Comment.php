@@ -14,4 +14,10 @@ class Comment extends Model
     {
         return $this->belongsTo('App\Product', 'id_product', 'id');
     }
+
+    public function users()
+    {
+        return $this->belongsTo('App\Comment', 'id_user', 'id');
+    }
 }
+

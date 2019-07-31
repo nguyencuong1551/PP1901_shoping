@@ -1,4 +1,5 @@
 @extends('layouts.app_admin')
+@section('title','Search product')
 @section('content')
     <body>
     <div class="container-fluid">
@@ -55,7 +56,7 @@
                                 <td>{!! $product['category']['name'] !!}</td>
                                 <td>
                                     @if(count($product['images']) == 0)
-                                        {{ __('no image') }}
+                                        no image
                                     @else
                                         <?php $image=($product['images']);?>
                                         @foreach ($image as $images)
@@ -85,4 +86,3 @@
     </div>
     </body>
 @endsection
-

@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class ImagesTableSeeder extends Seeder
+class imageEvent extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,10 +13,11 @@ class ImagesTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i=0; $i<25; $i++){
-            DB::table('images')->insert([
-                'name' => 'https://salt.tikicdn.com/cache/75x75/ts/product/b1/e4/61/1e6c2f5b6fc78fe62c79f369eb392265.jpg',
-                'id_product' => rand(1, 25),
+        for($i=0; $i<5; $i++){
+            DB::table('image_events')->insert([
+                'name' => Str::random(10),
+                'promotion_price' => rand(50, 100),
+                'end_promotion' => date('Y-m-d H:i:s'),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
