@@ -7,6 +7,8 @@ bootstrap/compiled.php
 app/storage/
 .idea/
 
+.idea/
+
 # Laravel 5 & Lumen specific
 public
 public/storage

@@ -2,4 +2,5 @@
 @section('title','Manage Category')
 @section('content')
 {{--    {{CategoryTre($allCategory)}}--}}
+
 @endsection

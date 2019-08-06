@@ -1,6 +1,4 @@
-<script src = "./path/to/dropzone.js" ></script >
-
-@extends('master')
+@extends('layouts.app')
 @section('title','create new product')
 @section('content')
     <div class="container">

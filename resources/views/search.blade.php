@@ -50,6 +50,7 @@
                                 <!-- start prduct navigation -->
                                 <br>
                                <div class="beta-products-details">
+
                                     <center><h2 class="alert alert-success text-danger">{{ __('Tim thay') }} {{count($products)}} {{ __('san pham') }}</h2></center>
                                </div>
                                 <!-- Tab panes -->
