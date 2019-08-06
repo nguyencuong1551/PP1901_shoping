@@ -98,8 +98,8 @@
                                                     <figure>
                                                         <a class="aa-product-img" href="#"><img style="width: 250px;height: 250px" src="{{asset('images/'.((count($product['images'])>0)?($product['images'][0]['name']):null))}}"
                                                                                                 alt="polo shirt img"></a>
-                                                        <a class="aa-add-card-btn" href="{{Route('themgiohang',$product['id'])}}"><span
-                                                                    class="fa fa-shopping-cart"></span>Add To Cart</a>
+                                                        <a class="aa-add-card-btn" href="{{Route('themgiohang',$product->id)}}"><span
+                                                                    class="fa fa-shopping-cart"></span>{{ __('Add To Cart') }}</a>
                                                         <figcaption>
                                                             <h4 class="aa-product-title"><a
                                                                         href="#">{{$product['name']}}</a></h4>
@@ -114,7 +114,7 @@
                                                                     class="fa fa-search"></span></a>
                                                     </div>
                                                     <!-- product badge -->
-                                                    <span class="aa-badge aa-hot" href="#">HOT!</span>
+                                                    <span class="aa-badge aa-hot" href="#">{{ __('HOT') }}!</span>
 
 {{--                                                    nut them vao gio hang--}}
 
@@ -227,70 +227,9 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-    </div>
-</section>
-<!-- / Support section -->
-<!-- Testimonial -->
-<!-- / Testimonial -->
-
-<!-- Latest Blog -->
-<!-- / Latest Blog -->
-
-<!-- Client Brand -->
-<!-- footer -->
-<footer id="aa-footer">
-    <!-- footer bottom -->
-    <div class="aa-footer-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="aa-footer-top-area">
-                        <div class="row">
-                            <div class="col-md-9 col-sm-6">
-                                <div class="aa-footer-widget">
-                                    <h3>{{ __('ADDRESS') }}</h3>
-                                    <ul class="aa-footer-nav">
-                                        <li><a href="#">
-                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59587.94583116869!2d105.80194401492152!3d21.02281613561084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9bd9861ca1%3A0xe7887f7b72ca17a9!2zSMOgIE7hu5lpLCBIb8OgbiBLaeG6v20sIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1562160360630!5m2!1svi!2s"
-                                                        width="800" height="250" frameborder="0" style="border:0"
-                                                        allowfullscreen></iframe>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6">
-                                <div class="aa-footer-widget">
-                                    <div class="aa-footer-widget">
-                                        <h3>{{ __('Contact Us') }}</h3>
-                                        <address>
-                                            <p><span class="fa fa-phone"></span>+1 212-982-4589</p>
-                                            <p><span class="fa fa-envelope"></span>dailyshop@gmail.com</p>
-                                        </address>
-                                        <div class="aa-footer-social">
-                                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                                            <a href=""><i class="fab fa-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- footer-bottom -->
-</footer>
-<!-- / footer -->
-</body>
-@endsection
-=======
         <!-- footer-bottom -->
     </footer>
     <!-- / footer -->
     </body>
 @endsection
 
-
->>>>>>> cf7d588bcba7ab6a59c59ba525fbb8b2cf1a963f

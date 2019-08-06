@@ -137,8 +137,8 @@ class ProductController extends Controller
     public function delete(Request $request)
     {
         $product = Product::find($request->get('product_id'));
-        if($product->delete()){
-            $images = Image::where('id_product',$request->get('product_id'))->delete();
+        if ($product->delete()) {
+            $images = Image::where('id_product', $request->get('product_id'))->delete();
         }
 
         return redirect()->route('indexProduct')->with('mes_del', "{{ __('Delete success') }}");
@@ -161,31 +161,12 @@ class ProductController extends Controller
 
         return view('welcome', compact('products'));
     }
-    public function DetailProduct($id)
-    {
-        $product_image = Product::with
-        (
-            [
-                'images' => function ($query) {
-                    $query->select(['id_product', 'name']);
-                },
-            ]
-        )->where('id','=', $id)->get()->toArray();
-        $products = Product::find($id);
-        $categories = Category::all();
-        $products_category = Product::with
-        (
-            [
-                'category' => function ($query){
-                    $query->select(['id','name']);
-                }
-            ]
-        )->where('id','=', $id)->get()->toArray();
-        $product_category=$products->category->get();
-        $aa=Category::find($product_category[0]['id'])->products->toArray();
-        $comments=Product::find($id)->comments;
 
-        return view('products.detail',compact('categories','products','product_image','products_category','aa','comments'));
+    public function getSearch(Request $request)
+    {
+        $products = Product::where('name', 'like', '%' . $request->key . '%')->get();
+
+        return view('products.search', compact('products'));
     }
 }
 
