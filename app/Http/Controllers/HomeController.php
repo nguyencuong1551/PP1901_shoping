@@ -113,14 +113,5 @@ class HomeController extends Controller
 
         return view('search', compact('products', 'categories', 'events', 'categories', 'category1', 'category2', 'category3', 'category4', 'category5', 'parent1', 'parent2', 'parent3', 'parent4', 'parent5'));
     }
-
-    public function getSearch(Request $request)
-    {
-        $products = Product::where('name', 'like', '%' . $request->key . '%')->get();
-        $events = Event::all();
-        $categories = Category::all();
-
-        return view('search', compact('products', 'events', 'categories'));
-    }
 }
 
