@@ -9,7 +9,7 @@
 {{--    @endforeach--}}
 
 {{--    <p><a id="category" href="javascript:;" category_id="{{$allCategory->id}}">{{$treeCategory}}</a></p>--}}
-    <a href="javascript:;" id="category">ADD</a>
+    <a href="javascript:;" id="category">{{ __('ADD') }}</a>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#category').click(function () {
@@ -23,3 +23,4 @@
     });
 </script>
 @endsection
+

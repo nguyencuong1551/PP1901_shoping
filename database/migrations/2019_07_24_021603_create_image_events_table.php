@@ -34,3 +34,4 @@ class CreateImageEventsTable extends Migration
         Schema::dropIfExists('image_events');
     }
 }
+

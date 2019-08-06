@@ -18,6 +18,7 @@ class SendEmail extends Mailable
      * @return void
      */
     public $bill;
+
     public function __construct(Bill $bill)
     {
         //
@@ -34,3 +35,4 @@ class SendEmail extends Mailable
         return $this->markdown('emails.newEmailUser');
     }
 }
+

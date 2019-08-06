@@ -98,13 +98,14 @@
                                                     <figure>
                                                         <a class="aa-product-img" href="#"><img style="width: 250px;height: 250px" src="{{asset('images/'.((count($product['images'])>0)?($product['images'][0]['name']):null))}}"
                                                                                                 alt="polo shirt img"></a>
-                                                        <a class="aa-add-card-btn" href="{{Route('themgiohang',$product->id)}}"><span
+                                                        <a class="aa-add-card-btn" href="{{Route('themgiohang',$product['id'])}}"><span
                                                                     class="fa fa-shopping-cart"></span>{{ __('Add To Cart') }}</a>
                                                         <figcaption>
                                                             <h4 class="aa-product-title"><a
                                                                         href="#">{{$product['name']}}</a></h4>
                                                             <span class="text-dark"><del>{{$product['unit_price']}}$</del></span>
                                                             <span class="aa-product-price">{{$product['event']['promotion_price']}}$</span>
+
                                                         </figcaption>
                                                     </figure>
                                                     <div class="aa-product-hvr-content">
@@ -139,7 +140,6 @@
                 </div>
             </div>
         </div>
-
     </section>
     <!-- / Products section -->
     <!-- banner section -->
@@ -232,4 +232,5 @@
     <!-- / footer -->
     </body>
 @endsection
+
 

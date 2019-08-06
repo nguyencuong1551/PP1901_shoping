@@ -120,3 +120,11 @@ Route::get('del-cart/{id}', 'CreateShopingCartController@getDelItemCart')->name(
 
 Route::get('getOrder','CreateShopingCartController@getCheckout')->name('getOrder');
 Route::post('postOrder','CreateShopingCartController@postCheckout')->name('postOrder');
+
+
+Route::get('/search','HomeController@getSearch')->name('search');
+Route::get('add-to-cart/{id}', 'CreateShopingCartController@getAddtoCart')->name('themgiohang');
+Route::get('del-cart/{id}', 'CreateShopingCartController@getDelItemCart')->name('xoagiohang');
+
+Route::get('getOrder','CreateShopingCartController@getCheckout')->name('getOrder');
+Route::post('postOrder','CreateShopingCartController@postCheckout')->name('postOrder');

@@ -41,3 +41,4 @@ class Product extends Model
         return $this->hasMany('App\Comment', 'id_product', 'id');
     }
 }
+

@@ -69,7 +69,7 @@
                                                                                                     src="{{ asset('images/'. $product['images'][0]['name'] )}}"
                                                                                                     alt="polo shirt img"></a>
                                                             <a class="aa-add-card-btn" href="#"><span
-                                                                        class="fa fa-shopping-cart"></span>Add To Cart</a>
+                                                                        class="fa fa-shopping-cart"></span>{{ __('Add To Cart') }}</a>
                                                         @endif
                                                         <figcaption>
                                                             <h4 class="aa-product-title"><a
@@ -85,7 +85,7 @@
                                                                     class="fa fa-search"></span></a>
                                                     </div>
                                                     <!-- product badge -->
-                                                    <span class="aa-badge aa-hot" href="#">HOT!</span>
+                                                    <span class="aa-badge aa-hot" href="#">{{ __('HOT') }}!</span>
                                                 </li>
                                         @endforeach
                                         <!-- start single product item -->

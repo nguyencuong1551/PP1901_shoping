@@ -36,12 +36,13 @@ class CommentController extends Controller
     {
         return view('products.detail');
     }
-    public  function store(Request $request,$id)
+
+    public function store(Request $request, $id)
     {
         $comments = new Comment();
         $comments->content = $request->get('content');
         $comments->id_user = Auth::user()->id;
-        $comments->id_product=$id;
+        $comments->id_product = $id;
         $comments->save();
         return redirect()->back();
     }
@@ -54,3 +55,4 @@ class CommentController extends Controller
         return redirect()->route('indexComment')->with('mes_del', 'Delete success');
     }
 }
+

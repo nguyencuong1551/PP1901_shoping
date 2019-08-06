@@ -113,6 +113,7 @@
                                     <li class="nav-item dropdown">
                                         <a href="{{Route('home')}}">{{ __('Trang quản lý') }}</a>
 
+
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }} <span class="caret"></span>
@@ -304,4 +305,5 @@
 </body>
 <!-- / header section -->
 <!-- menu -->
+
 

@@ -61,3 +61,4 @@ class Kernel extends HttpKernel
         'checkmanage' => \App\Http\Middleware\checkmanage::class,
     ];
 }
+
