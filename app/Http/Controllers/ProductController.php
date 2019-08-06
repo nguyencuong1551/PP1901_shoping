@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Image;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
@@ -11,7 +12,20 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with
+        (
+            [
+                'event' => function ($query) {
+                    $query->select(['id', 'name']);
+                },
+                'images' => function ($query) {
+                    $query->select(['id_product', 'name']);
+                },
+                'category' => function ($query) {
+                    $query->select(['id', 'name']);
+                }]
+        )->get()->toArray();
+
         return view('products.home', compact('products'));
     }
 
@@ -28,26 +42,47 @@ class ProductController extends Controller
     {
         $categories = $this->categories;
         $events = $this->events;
+
         return view('products.add', compact('categories', 'events'));
+
     }
 
     public function store(Request $request)
     {
         $categories = $this->categories;
-        $product = new Product();
-        $product->name = $request->get('name');
-        $product->description = $request->get('description');
-        $product->unit_price = $request->get('unit_price');
-        $product->id_category = $request->get('id_category');
-        $product->id_category = $request->get('id_category');
-        $product->id_category = $request->get('id_category');
-        $product->id_event = $request->get('id_event');
-        $mess = "";
-        if ($product->save()) {
-            $mess = "Success add new";
-        }
+        $events = $this->events;
 
-        return view('products.add', compact('categories'))->with('mess', $mess);
+        $imageis = Product::with(['images' => function ($query) {
+            $query->select(['id_product', 'name']);
+        }])->get()->toArray();
+
+
+        $image = $request->file;
+        if (count($image) != 0) {
+            $product = new Product();
+            $product->name = $request->get('name');
+            $product->description = $request->get('description');
+            $product->unit_price = $request->get('unit_price');
+            $product->id_category = $request->get('id_category');
+
+            $product->id_event = $request->get('id_event');
+
+            $mess = "";
+            if ($product->save()) {
+                foreach ($image as $k => $v) {
+                    $images = new Image();//phải tạo ảnh ở đây vì với mỗi ảnh cần lưu vào hàng, nếu k có thì nó sẽ ghi đè lên
+
+                    $filename = $v->getClientOriginalName();
+                    $location = $v->move(public_path() . '/images/', $filename);
+
+                    $images->name = $filename;
+                    $images->id_product = $product->id;
+                    $images->save();
+                }
+                $mess = "{{ __('Success add new') }}";
+            }
+            return view('products.add', compact('categories', 'events'))->with('mess', $mess);
+        }
     }
 
     public function edit($id)
@@ -55,6 +90,7 @@ class ProductController extends Controller
         $categories = $this->categories;
         $events = $this->events;
         $product = Product::find($id);
+
         return view('products.edit', compact('categories', 'product', 'events'));
     }
 
@@ -62,25 +98,73 @@ class ProductController extends Controller
     {
         $categories = $this->categories;
         $events = $this->events;
-        $product = Product::find($id);
-        $product->name = $request->get('name');
-        $product->description = $request->get('description');
-        $product->unit_price = $request->get('unit_price');
-        $product->id_category = $request->get('id_category');
-        $product->id_event = $request->get('id_event');
-        $mess = "";
-        if ($product->save()) {
-            $mess = "Success edit";
-        }
 
-        return view('products.edit', compact('categories', 'product', 'events'))->with('mess', $mess);
+        $mess = "";
+
+        $image = $request->file;
+        if (count($image) != 0) {
+
+            $product = Product::find($id);
+            $product->name = $request->get('name');
+            $product->description = $request->get('description');
+            $product->unit_price = $request->get('unit_price');
+            $product->id_category = $request->get('id_category');
+            $product->id_event = $request->get('id_event');
+
+            if ($product->save()) {
+
+                $images = Image::where('id_product', $id)->delete();
+
+                foreach ($image as $k => $v) {
+
+                    $images = new Image();
+
+                    $filename = $v->getClientOriginalName();
+                    $location = $v->move(public_path() . '/images/', $filename);
+
+                    $images->name = $filename;
+                    $images->id_product = $product->id;
+                    $images->save();
+                    $mess = "{{ __('Success edit') }}";
+                }
+
+                return view('products.edit', compact('categories', 'product', 'events'))->with('mess', $mess);
+            }
+        }
     }
 
     public function delete(Request $request)
     {
         $product = Product::find($request->get('product_id'));
-        $product->delete();
-        return redirect('/product')->with('mes_del', 'Delete success');
+        if ($product->delete()) {
+            $images = Image::where('id_product', $request->get('product_id'))->delete();
+        }
+
+        return redirect()->route('indexProduct')->with('mes_del', "{{ __('Delete success') }}");
+    }
+
+
+    public function ProductAllWelcome()
+    {
+        $products = Product::with
+        (
+            [
+                'event' => function ($query) {
+                    $query->select(['id', 'name']);
+                },
+                'category' => function ($query) {
+                    $query->select(['id', 'name']);
+                }
+            ]
+        )->get()->toArray();
+
+        return view('welcome', compact('products'));
+    }
+
+    public function getSearch(Request $request)
+    {
+        $products = Product::where('name', 'like', '%' . $request->key . '%')->get();
+
+        return view('products.search', compact('products'));
     }
 }
-
