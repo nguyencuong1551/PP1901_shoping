@@ -1,5 +1,6 @@
 @extends('master')
 @section('title','Manage Category')
 @section('content')
-{{--    {{CategoryTre($allCategory)}}--}}
+    {{--    {{CategoryTre($allCategory)}}--}}
+
 @endsection

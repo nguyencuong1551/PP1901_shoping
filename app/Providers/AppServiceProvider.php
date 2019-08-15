@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Cart;
+use App\Repositories\UserRepositoryInterface;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Session;
@@ -16,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         view()->composer(['welcome','ShoppingCart.order','layouts.app_user','emails.newEmailUser'], function ($view) {
             if (Session('cart')) {
                 $oldCart = Session::get('cart');
@@ -35,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 }
+
