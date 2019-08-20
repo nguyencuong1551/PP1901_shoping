@@ -59,7 +59,7 @@
                                         </div>
                                         <br><br><br><br>
                                         <div class="aa-prod-view-bottom">
-                                            <a class="aa-add-to-cart-btn" href="#">{{ __('Add To Cart') }}</a>
+                                            <a class="aa-add-to-cart-btn" href="{{Route('themgiohang',$products['id'])}}">{{ __('Add To Cart') }}</a>
                                         </div>
                                     </div>
                                 </div>
