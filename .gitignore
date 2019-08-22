@@ -8,14 +8,15 @@ app/storage/
 .idea/
 
 # Laravel 5 & Lumen specific
-public
 public/storage
 public/css
 public/js
 public/images
 public/fontawesome-free-5.9.0-web
 public/hot
-public/images
+public/image
+public/scss
+public/fonts
 storage/*.key
 .env.*.php
 .env.php
