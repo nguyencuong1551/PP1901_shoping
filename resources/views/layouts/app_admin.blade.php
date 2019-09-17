@@ -76,6 +76,11 @@
                 <i class="fas fa-mobile"></i>
                 <span>{{ __('Quản lý event') }}</span></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{Route('indexBill')}}">
+                <i class="fas fa-mobile"></i>
+                <span>{{ __('Quản lý đơn hàng') }}</span></a>
+        </li>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
         <!-- Sidebar Toggler (Sidebar) -->
