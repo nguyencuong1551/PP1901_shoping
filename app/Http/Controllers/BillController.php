@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Bill;
+use App\Bill_Detail;
+use DemeterChain\B;
 use Illuminate\Http\Request;
 
 class BillController extends Controller
 {
     public function index()
     {
-        $bills = Bill::all();
+        $bills = Bill_Detail::all();
 
         return view('bills.home', compact('bills'));
     }
