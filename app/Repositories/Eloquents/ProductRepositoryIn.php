@@ -23,7 +23,7 @@ class ProductRepositoryIn extends ElequentRepository implements ProductRepositor
 
     public function allEvent()
     {
-        return Event::all();
+        return ImageEvent::all();
     }
 
     public function allCategory()
